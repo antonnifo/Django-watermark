@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'human',  
+    'social_django', 
+    "django_bootstrap5",   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "watermarker",
     'images',
-    'human',  
-    'social_django',
 ]
 
 MIDDLEWARE = [
