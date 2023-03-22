@@ -1,3 +1,6 @@
 from django.contrib import admin
+from  .models import Watermark
 
-# Register your models here.
+@admin.register(Watermark)
+class WatermarkAdmin(admin.ModelAdmin):
+    list_display  = ('name', 'image','added_by', 'date_created')
