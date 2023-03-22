@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'images'
 urlpatterns = [
-                 path('', views.index, name='home'),
+                 path('add_watermark', views.add_watermark, name='add_watermark'),
 ]
