@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import WatermarkForm
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def add_watermark(request):
-
     if request.method == 'POST':
         form = WatermarkForm(data=request.POST, files=request.FILES)
         if form.is_valid():
