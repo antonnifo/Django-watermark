@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static watermark %}
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
@@ -6,6 +7,31 @@
     <p>Hello {{request.user.first_name }} Welcome to your dashboard.</p>
     <p>You can <a href="{% url "edit" %}">edit your profile</a> or <a href="{% url "password_change" %}">change your password</a> 
         or <a href="{% url "logout" %}">Logout</a></p>
-    
+
+
+    <h2>My watermarks </h2>
     <p> <a href="{% url "images:add_watermark" %}">Add Watermark</a></p>
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in watermarks %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.date_created}}</td>
+            </tr>
+       {% empty %}
+        <p> No watermarks at the moment please add a few <a href="{% url "images:add_watermark" %}">Here</a></p>
+        {% endfor %}            
+    </tbody>
+    </table>
+
+    
+
 {% endblock %}
