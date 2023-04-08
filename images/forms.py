@@ -4,7 +4,7 @@ from .models import Watermark, Image
 class WatermarkForm(forms.ModelForm):
     class Meta:
         model = Watermark
-        fields = ("name", "image",)
+        fields = ("image",)
 
 class ImageAddForm(forms.ModelForm):
     class Meta:
