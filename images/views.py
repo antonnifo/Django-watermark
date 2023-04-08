@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import WatermarkForm, ImageAddForm
 from django.contrib.auth.decorators import login_required
 from .models import Image
@@ -11,6 +11,7 @@ def add_watermark(request):
         if form.is_valid():
             watermarkz = form.save(commit=False)
             watermarkz.added_by = request.user
+            watermarkz.name = "logo"
             watermarkz.save()
             return redirect('dashboard')
     else:
@@ -26,10 +27,16 @@ def watermark_images(request):
             image = form.save(commit=False)
             image.added_by = request.user
             image.save()
-            return redirect('dashboard')
+            return redirect('images:list_images')
     else:
-        images = Image.objects.all()
         form = ImageAddForm()
 
     return render(request, 'images/watermark_image.html', {'form': form,
-                                                            'images':images, })
+                                                             })
+
+@login_required
+def list_images(request):
+    images =  Image.objects.filter(added_by=request.user)
+
+    return render(request, 'images/my_images.html', {'images': images,
+                                                      })
