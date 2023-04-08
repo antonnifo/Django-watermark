@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load watermark %}
+{% block content %}
+
+{% for item in images %}
+    <img src="{{item.image.url|watermark:"logo,position=br,opacity=50"}}" alt="" />
+{% empty %}
+   <p>No images at the moment please add a few here</p>
+{% endfor %}
+<p>Copyright -{% now "Y" %}</p>
+{% endblock %}
