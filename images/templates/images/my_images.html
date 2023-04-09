@@ -2,10 +2,13 @@
 {% load watermark %}
 {% block content %}
 
+
+<p>Go back to<a href="{% url 'dashboard' %}">Dashboard</a></p>
 {% for item in images %}
-    <img src="{{item.image.url|watermark:"logo,position=br,opacity=50"}}" alt="" />
+    <img class="img-fluid" src="{{item.image.url|watermark:"logo,position=br,opacity=50"}}" alt="" />
 {% empty %}
-   <p>No images at the moment please add a few here</p>
+   <p>No images at the moment please start <a href="{% url 'dashboard' %}">Here</a></p>
 {% endfor %}
+
 <p>Copyright -{% now "Y" %}</p>
 {% endblock %}

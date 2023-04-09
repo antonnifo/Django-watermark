@@ -3,29 +3,21 @@
 {% block content %}
 
 <h5>Upload Your Image</h5>
-
 <form method="post" action="{% url 'images:add_image' %}" enctype="multipart/form-data">
 
   <div class="mb-4">{% csrf_token %}
     {% for field in form %}
 
-        {{field.label_tag}} {{field}}
-                
-        <div class="invalid-feedback">
-            {{field.errors}}
-        </div>       
-    {% endfor %}
+        {{field.label_tag}} 
+           {{field}}
+        {{field.errors}}
+            
+    {% endfor %} 
   </div>
   <button type="submit" class="btn btn-primary">Upload</button>
 
 </form>
-<p>  <a href="{% url 'dashboard' %}">Dashboard</a></p>
 
-{% for item in images %}
-    <img src="{{item.image.url|watermark:"logo,position=br,opacity=35"}}" alt="" />
-{% empty %}
-
-<p>You Have not Uploaded any image at the moment</p>
-{% endfor %}
+<p>Go back to<a href="{% url 'dashboard' %}">Dashboard</a></p>
 
 {% endblock %}
