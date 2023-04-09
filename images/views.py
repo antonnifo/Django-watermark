@@ -13,14 +13,14 @@ def add_watermark(request):
             watermarkz.added_by = request.user
             watermarkz.name = "logo"
             watermarkz.save()
-            return redirect('dashboard')
+            return redirect('images:add_image')
     else:
         form = WatermarkForm() 
 
     return render (request, 'images/add_watermark.html' ,{'form':form,})
 
 @login_required
-def watermark_images(request):
+def watermark_image(request):
     if request.method == 'POST':
         form = ImageAddForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -33,10 +33,9 @@ def watermark_images(request):
 
     return render(request, 'images/watermark_image.html', {'form': form,
                                                              })
-
 @login_required
 def list_images(request):
-    images =  Image.objects.filter(added_by=request.user)
+    images =  Image.objects.filter(added_by=request.user)[:1]
 
     return render(request, 'images/my_images.html', {'images': images,
                                                       })
