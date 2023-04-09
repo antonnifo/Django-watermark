@@ -4,37 +4,11 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <p>Hello {{request.user.first_name }} Welcome to your dashboard.</p>
-    <p>You can <a href="{% url "edit" %}">edit your profile</a> or <a href="{% url "password_change" %}">change your password</a> 
-        or <a href="{% url "logout" %}">Logout</a></p>
+   <br/>
+<p>Hello {{request.user.first_name }} Welcome to your dashboard.</p>
 
-
-    <h2>My watermarks </h2>
-    <p> <a href="{% url "images:add_watermark" %}">Add Watermark</a></p>
-    <p> <a href="{% url "images:add_image" %}">Watermark an Image</a></p>
-    <p> <a href="{% url "images:list_images" %}">My Images</a></p>
-    <table class="table">
-    <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in watermarks %}
-            <tr>
-                <th scope="row">{{forloop.counter}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.date_created}}</td>
-            </tr>
-       {% empty %}
-        <p> No watermarks at the moment please add a few <a href="{% url "images:add_watermark" %}">Here</a></p>
-        {% endfor %}            
-    </tbody>
-    </table>
-
-    
-
+<h4>My watermarks </h4>
+<p> You start by uploading a picture to  be used as a watermark <a href="{% url "images:add_watermark" %}">Here</a>
+    Followed by image you  want watermarked</p>
+<p> <a href="{% url "images:list_images" %}">My Last Image</a></p>
 {% endblock %}
