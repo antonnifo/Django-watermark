@@ -12,3 +12,10 @@ class Image(models.Model):
     image = models.ImageField(upload_to="images/")
     added_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='images')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return self.name
