@@ -4,13 +4,9 @@ from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 from django.contrib import messages
 
-from images import models 
 @login_required
 def dashboard(request):
-    watermark = models.Watermark.objects.filter(added_by=request.user.id)
- 
-    return render(request, 'human/dashboard.html',{'watermarks': watermark})
-
+    return render(request, 'human/dashboard.html',{})
 
 def register(request):
     if request.method == 'POST':
